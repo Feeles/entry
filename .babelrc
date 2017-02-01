@@ -6,6 +6,9 @@
         "firefox": 50,
         "opera": 42
       },
+      "exclude": [
+        "transform-regenerator"
+      ],
       "modules": false
     }]
   ]
