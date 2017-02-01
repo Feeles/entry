@@ -5,16 +5,22 @@
         <title>ENTRY</title>
     </head>
     <body>
+        <div class="ServiceWorkerProgress">
+            Now installing...
+        </div>
         <script type="text/javascript">
-            console.log('Try to install s.w.');
+            const div = document.body.querySelector('.ServiceWorkerProgress');
+
             navigator.serviceWorker.register('./entry.js')
                 .then((registration) => {
                     console.log(`ServiceWorker registration successful with scope: ${registration.scope}`);
+                    div.innerHTML = `ServiceWorker was installed. See <a href="/example">example</a>.`;
                 })
                 .catch((err) => {
                     console.log(err);
+                    div.innerHTML = `Failed to install ServiceWorker. See console to more info.`;
                 });
-                
+
         </script>
     </body>
 </html>
