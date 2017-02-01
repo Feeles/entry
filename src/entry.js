@@ -7,8 +7,30 @@ localforage.config({
   storeName: 'feeles_alpha_apps',
 });
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', async (event) => {
   console.log('Installed!');
+
+  if (!await localforage.getItem(DB_KEY_PROJECTS)) {
+    // No apps installed
+    const response = await fetch('./bin/example.html');
+    const blob = await response.blob();
+
+    const now = new Date().getTime();
+    const exampleProject = {
+      htmlKey: `example_${now}`,
+      title: 'example',
+      created: now,
+      size: blob.size,
+      updated: now,
+      CORE_VERSION: 'beta-1',
+      CORE_CDN_URL: 'https://embed.hackforplay.xyz/open-source/core/h4p-beta-1.js',
+    };
+    await localforage.setItem(exampleProject.htmlKey, blob);
+    await localforage.setItem(DB_KEY_PROJECTS, [exampleProject]);
+
+    console.log('Example successfully installed!');
+  }
+
 });
 
 self.addEventListener('activate', (event) => {
