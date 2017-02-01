@@ -1,0 +1,12 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": 54,
+        "firefox": 50,
+        "opera": 42
+      },
+      "modules": false
+    }]
+  ]
+}
