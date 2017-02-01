@@ -1,5 +1,6 @@
 // Service Worker Main
 import localforage from 'localforage';
+const DB_KEY_PROJECTS = 'apps';
 
 self.addEventListener('install', (event) => {
   console.log('Installed!');
@@ -44,7 +45,7 @@ async function route(request) {
     // App root
     console.log(`appName found!: ${appName}`);
 
-    const apps = await localforage.getItem('apps') || [];
+    const apps = await localforage.getItem(DB_KEY_PROJECTS) || [];
     for (const info of apps) {
       if (info.title === appName) {
         const html = await localforage.getItem(info.htmlKey);
