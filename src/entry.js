@@ -2,6 +2,11 @@
 import localforage from 'localforage';
 const DB_KEY_PROJECTS = 'apps';
 
+localforage.config({
+  name: 'Feeles',
+  storeName: 'feeles_alpha_apps',
+});
+
 self.addEventListener('install', (event) => {
   console.log('Installed!');
 });
@@ -9,11 +14,6 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
 
   console.log('Activated!');
-
-  localforage.config({
-    name: 'Feeles',
-    storeName: 'feeles_alpha_apps',
-  });
 
 });
 
