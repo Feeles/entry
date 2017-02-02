@@ -1,6 +1,9 @@
 // Service Worker Main
 import localforage from 'localforage';
-const DB_KEY_PROJECTS = 'apps';
+const DB_KEY_PROJECTS = 'projects';
+
+
+import getIDEString from './getIDEString';
 
 localforage.config({
   name: 'Feeles',
@@ -70,7 +73,9 @@ async function route(request) {
     const apps = await localforage.getItem(DB_KEY_PROJECTS) || [];
     for (const info of apps) {
       if (info.title === appName) {
-        const html = await localforage.getItem(info.htmlKey);
+        const html = new Blob([getIDEString(info)], {
+          type: 'html',
+        });
         return new Response(html);
       }
     }
