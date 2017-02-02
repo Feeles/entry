@@ -15,21 +15,27 @@ self.addEventListener('install', async (event) => {
 
   if (!await localforage.getItem(DB_KEY_PROJECTS)) {
     // No apps installed
-    const response = await fetch('./bin/example.html');
-    const blob = await response.blob();
+    const response = await fetch('./bin/example.json');
+    const text = await response.text();
 
     const now = new Date().getTime();
     const exampleProject = {
-      htmlKey: `example_${now}`,
+      storeName: `example_${now}`,
       title: 'example',
       created: now,
-      size: blob.size,
+      size: 2317352,
       updated: now,
-      CORE_VERSION: 'beta-1',
-      CORE_CDN_URL: 'https://embed.hackforplay.xyz/open-source/core/h4p-beta-1.js',
+      CORE_VERSION: 'beta-2',
+      CORE_CDN_URL: 'https://embed.hackforplay.xyz/open-source/core/h4p-beta-2.js',
     };
-    await localforage.setItem(exampleProject.htmlKey, blob);
     await localforage.setItem(DB_KEY_PROJECTS, [exampleProject]);
+    const store = localforage.createInstance({
+      name: 'projects',
+      storeName: exampleProject.storeName,
+    });
+    for (const file of JSON.parse(text)) {
+      store.setItem(file.name, file);
+    }
 
     console.log('Example successfully installed!');
   }
