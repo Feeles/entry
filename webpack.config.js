@@ -25,7 +25,10 @@ const config = {
     ]
   },
   plugins: [
-
+    new webpack.DefinePlugin({
+      CORE_VERSION: JSON.stringify('beta-3'),
+      CORE_CDN_URL: JSON.stringify('https://embed.hackforplay.xyz/open-source/core/h4p-beta-3.js'),
+    }),
   ],
   devServer: {
     contentBase: __dirname,
