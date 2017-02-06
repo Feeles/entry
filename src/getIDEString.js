@@ -22,7 +22,7 @@ export default (props) => `
     <script
       type="text/javascript"
       src="${props.CORE_CDN_URL}"
-      onload="h4p({project:'${props.storeName}'})"
+      onload="h4p({title:'${props.title}'})"
     ></script>
   </head>
   <body>

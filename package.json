@@ -23,6 +23,7 @@
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
     "babel-preset-env": "^1.1.8",
     "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony",
     "uglifyjs-webpack-plugin": "^0.1.2",
@@ -30,6 +31,7 @@
     "webpack-dev-server": "^1.16.3"
   },
   "dependencies": {
+    "dexie": "^1.5.1",
     "localforage": "^1.4.3"
   }
 }
