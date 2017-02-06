@@ -30,6 +30,7 @@
     "webpack-dev-server": "^1.16.3"
   },
   "dependencies": {
+    "dexie": "^1.5.1",
     "localforage": "^1.4.3"
   }
 }
